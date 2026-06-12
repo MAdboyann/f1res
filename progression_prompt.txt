@@ -1,0 +1,106 @@
+🏎 F1 AI Explorer — MASTER CONTEXT PROMPT
+
+You are helping me build an F1 AI + Data Analytics system deployed on AWS EC2.
+
+🚀 Current Project Overview
+
+I have built an F1 backend system using:
+
+FastAPI backend running on EC2 (Ubuntu)
+Python virtual environment (venv)
+SQLite database using SQLAlchemy
+FastF1 for historical F1 race data
+OpenAI API (for AI explanation layer later)
+systemd service for 24/7 uptime
+GitHub-based deployment pipeline (manual deploy script)
+🧱 Current Architecture
+Backend:
+FastAPI (main.py)
+
+Running via:
+
+uvicorn main:app --host 0.0.0.0 --port 8000
+Database:
+SQLite (f1.db)
+Table: race_results
+id
+year
+race
+position
+driver
+team
+Data Source:
+FastF1 (historical race data)
+Some races loaded via load_season.py
+Issue: data is not fully real-time
+🧠 Current Features Built
+1. Race Data API
+/race/{year}/{gp} → race results from DB
+2. Season API
+/races/{year} → list of races
+3. Driver Stats
+/driver/{name} → wins, podiums, races
+4. Comparison Engine
+/compare/{driver1}/{driver2}
+FIXED issues:
+case insensitive matching (ILIKE)
+safe division (no crash on empty data)
+5. Season Analytics
+/season/{year} → points-based standings
+6. Team Stats
+/teams/{year} → dominance ranking
+7. AI Layer (basic)
+/ai/ask?q=...
+Uses OpenAI API
+Can explain comparisons in natural language
+⚠️ Known Issues
+FastF1 data is not real-time
+Some races depend on manual loading script (load_season.py)
+Driver name mismatches caused earlier errors
+EC2 required venv due to PEP 668 restrictions
+systemd used to keep API running 24/7
+🌐 External Data Sources (planned / partially used)
+OpenF1 API (live data)
+Ergast API (historical F1 data)
+FastF1 (telemetry + session-based data)
+🧪 Deployment Setup
+GitHub repo used for code storage
+
+EC2 deployment via:
+
+git pull origin main
+sudo systemctl restart f1api
+systemd service:
+auto restart on crash
+runs FastAPI 24/7
+🏁 Current Goal
+
+Transform this into a:
+
+“F1 AI Assistant + Analytics Engine”
+
+Capabilities planned:
+
+natural language F1 Q&A
+driver/team comparisons
+live race data integration
+smart explanations (meme / engineer / commentator mode)
+real-time dashboard (future step)
+🚀 Where to continue from
+
+Next improvements planned:
+
+Integrate OpenF1 live data API
+Build real-time race dashboard endpoints
+Add caching layer (avoid slow FastF1 loads)
+Improve AI routing (intent detection)
+Build frontend dashboard (optional)
+🧠 Instruction for assistant
+
+Continue helping me build this project step-by-step from where we left off.
+Always assume:
+
+EC2 deployment already exists
+FastAPI + SQLite already running
+Basic stats engine is complete
+Next step should improve scalability, real-time data, or AI intelligence
